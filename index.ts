@@ -33,15 +33,15 @@ function myFrom<TSource>(data: TSource[]): Observable<TSource> {
 showSeparator();
 
 /* create simple myFilter similer to filter() */
-myFiler([1, 2, 3, 4, 5]).subscribe({
+myFiler([1, 2, 3, 4, 5], (value) => value > 2).subscribe({
   next: (value) => console.log(value),
   complete: () => console.log('myFiler complete'),
 });
 
-function myFiler(data: number[]) {
+function myFiler(data: number[], predicate: (value: number) => boolean) {
   return new Observable((subscriber) => {
     for (let value of data) {
-      if (value > 2) {
+      if (predicate(value)) {
         subscriber.next(value);
       }
     }
