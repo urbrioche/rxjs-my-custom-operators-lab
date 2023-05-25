@@ -8,14 +8,13 @@ import { of, map, Observable } from 'rxjs';
 
 // Open the console in the bottom right to see results.
 
-myFrom().subscribe({
+myFrom([1, 2, 3, 4]).subscribe({
   next: (value) => console.log(value),
   complete: () => console.log('myFrom complete'),
 });
 
-function myFrom(): Observable<number> {
+function myFrom(data: number[]): Observable<number> {
   return new Observable((subscriber) => {
-    const data = [1, 2, 3, 4];
     for (let value of data) {
       subscriber.next(value);
     }
