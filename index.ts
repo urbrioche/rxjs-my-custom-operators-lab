@@ -15,10 +15,10 @@ myFrom().subscribe({
 
 function myFrom(): Observable<number> {
   return new Observable((subscriber) => {
-    subscriber.next(1);
-    subscriber.next(2);
-    subscriber.next(3);
-    subscriber.next(4);
+    const data = [1, 2, 3, 4];
+    for (let value of data) {
+      subscriber.next(value);
+    }
     subscriber.complete();
   });
 }
