@@ -33,10 +33,12 @@ function myFrom<TSource>(data: TSource[]): Observable<TSource> {
 showSeparator();
 
 /* create simple myFilter similer to filter() */
-myFiler((value) => value > 2)(from([1, 2, 3, 4, 5])).subscribe({
-  next: (value) => console.log(value),
-  complete: () => console.log('myFiler complete'),
-});
+from([1, 2, 3, 4, 5])
+  .pipe(myFiler((value) => value > 2))
+  .subscribe({
+    next: (value) => console.log(value),
+    complete: () => console.log('myFiler complete'),
+  });
 
 function myFiler(predicate: (value: number) => boolean) {
   return (data: Observable<number>) =>
