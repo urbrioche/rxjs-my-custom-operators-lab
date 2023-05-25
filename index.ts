@@ -40,8 +40,15 @@ from([1, 2, 3, 4, 5])
     complete: () => console.log('myFiler complete'),
   });
 
-function myFiler(predicate: (value: number) => boolean) {
-  return (data: Observable<number>) =>
+from(['A', 'B', 'C', 'D'])
+  .pipe(myFiler((value) => value !== 'A'))
+  .subscribe({
+    next: (value) => console.log(value),
+    complete: () => console.log('myFiler complete'),
+  });
+
+function myFiler<TValue>(predicate: (value: TValue) => boolean) {
+  return (data: Observable<TValue>) =>
     new Observable((subscriber) => {
       data.subscribe((value) => {
         if (predicate(value)) {
