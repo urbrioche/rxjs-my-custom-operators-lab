@@ -13,7 +13,12 @@ myFrom([1, 2, 3, 4]).subscribe({
   complete: () => console.log('myFrom complete'),
 });
 
-function myFrom(data: number[]): Observable<number> {
+myFrom(['A', 'B', 'C']).subscribe({
+  next: (value) => console.log(value),
+  complete: () => console.log('myFrom complete'),
+});
+
+function myFrom<TSource>(data: TSource[]): Observable<TSource> {
   return new Observable((subscriber) => {
     for (let value of data) {
       subscriber.next(value);
