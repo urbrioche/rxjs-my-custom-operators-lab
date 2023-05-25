@@ -49,7 +49,7 @@ from(['A', 'B', 'C', 'D'])
 
 function myFiler<TValue>(predicate: (value: TValue) => boolean) {
   return (data: Observable<TValue>) =>
-    new Observable((subscriber) => {
+    new Observable<TValue>((subscriber) => {
       data.subscribe((value) => {
         if (predicate(value)) {
           subscriber.next(value);
